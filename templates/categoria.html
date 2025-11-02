@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categoria: {{ categoria.capitalize() }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <a href="{{ url_for('index') }}" class="back-link">← Voltar</a>
+        <nav class="menu-superior">
+            <ul>
+                <li><a href="{{ url_for('index') }}">Aluguel de Carro</a></li>
+                <li><a href="#">Seminovos</a></li>
+                <li><a href="#">Carros por Assinatura</a></li>
+            </ul>
+        </nav>
+        <h1>Carros da Categoria: {{ categoria.capitalize() }}</h1>
+    </header>
+    <main>
+        <div class="lista-veiculos">
+            {% for veiculo in veiculos %}
+                <div class="veiculo-card">
+                    <h3>{{ veiculo.nome }}</h3>
+					
+					<img src="{{ url_for('static', filename='img/' + veiculo.foto) }}" alt="Foto do {{ veiculo.nome }}" class="veiculo-foto">
+    <h3>{{ veiculo.nome }}</h3>
+                    <p><strong>Valor diário:</strong> R$ {{ "%.2f"|format(veiculo.valor) }}</p>
+                    <h4>Opcionais:</h4>
+                    <ul>
+                        {% for opcional in veiculo.opcionais %}
+                            <li>{{ opcional }}</li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{{ url_for('checkout', veiculo_id=veiculo.id) }}" class="btn-alugar">Alugar</a>
+					
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>

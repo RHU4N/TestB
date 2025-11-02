@@ -1,0 +1,173 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #a3d3af;
+    color: #333;
+}
+
+
+.back-link {
+    position: absolute;
+    left: 20px;
+    top: 75%;
+    transform: translateY(-50%);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+main {
+    padding: 20px;
+    max-width: 960px;
+    margin: 20px auto;
+}
+
+h1, h2, h3 {
+    color: #333;
+    text-align: center;
+}
+
+
+.categorias, .lista-veiculos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.categoria-card, .veiculo-card, .checkout-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 5px 10px;
+    text-align: center;
+}
+
+.categoria-card {
+
+    color: #007bff;
+    font-size: 1.5em;
+    font-weight: bold;
+    transition: transform 0.2s;
+    display: flexbox;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    box-shadow: 5px 10px;
+}
+
+.categoria-card:hover {
+    transform: translateY(-5px);
+    background-color: #e9ecef;
+}
+
+.img-card {
+    width: 50%;
+    height: 75px;
+    object-fit: fill;
+    /* border-radius: 8px 8px 0 0; */
+    margin-bottom: -15px;
+}
+
+.veiculo-card h3 {
+    color: #007bff;
+}
+
+.veiculo-card ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
+    text-align: left;
+}
+
+.veiculo-card li {
+    background-color: #e9ecef;
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.btn-alugar, .btn-confirmar {
+    display: inline-block;
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.btn-confirmar {
+    background-color: #007bff;
+}
+
+.btn-alugar:hover, .btn-confirmar:hover {
+    opacity: 0.9;
+}
+
+.checkout-box {
+    text-align: left;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.checkout-foto, .veiculo-foto {
+    display: block;
+    margin: 0 auto 15px; /* centraliza horizontalmente */
+    object-fit: cover;
+    max-width: 100%;
+    height: auto;
+    align-self: center;
+    border-radius: 8px;
+}
+
+/* Estilos para o menu superior */
+.menu-superior {
+    background-color: #333;
+    padding: 10px 0;
+}
+
+.menu-superior ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.menu-superior li {
+    display: inline-block;
+}
+
+.menu-superior a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.menu-superior a:hover {
+    background-color: #575757;
+}
+
+/* Ajuste do cabeçalho para acomodar o menu */
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 0; /* Ajuste o padding para não sobrepor o menu */
+    text-align: center;
+    position: relative;
+}
+
+header h1 {
+    padding: 20px;
+    margin: 0;
+}
+

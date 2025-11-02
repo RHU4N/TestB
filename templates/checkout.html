@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <a href="#" onclick="window.history.back()" class="back-link">← Voltar</a>
+        <nav class="menu-superior">
+            <ul>
+                <li><a href="{{ url_for('index') }}">Aluguel de Carro</a></li>
+                <li><a href="#">Seminovos</a></li>
+                <li><a href="#">Carros por Assinatura</a></li>
+            </ul>
+        </nav>
+        <h1>Checkout do Veículo</h1>
+    </header>
+    <main>
+        <div class="checkout-box">
+            <h2>Você selecionou: {{ veiculo.nome }}</h2>
+    <img src="{{ url_for('static', filename='img/' + veiculo.foto) }}" alt="Foto do {{ veiculo.nome }}" class="checkout-foto">
+    <p><strong>Valor diário:</strong> R$ {{ "%.2f"|format(veiculo.valor) }}</p>
+            <p><strong>Valor diário:</strong> R$ {{ "%.2f"|format(veiculo.valor) }}</p>
+            <h3>Opcionais:</h3>
+            <ul>
+                {% for opcional in veiculo.opcionais %}
+                    <li>{{ opcional }}</li>
+                {% endfor %}
+            </ul>
+            <p>Pronto para alugar?</p>
+            <button class="btn-confirmar">Confirmar Aluguel</button>
+        </div>
+    </main>
+</body>
+</html>
