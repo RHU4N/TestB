@@ -26,7 +26,7 @@
         {% for categoria in categorias %}
         <div class="categoria-card" >
           <img class="img-card" src="{{ url_for('static', filename='img/' + categoria + '.png') }}" alt="{{ categoria.capitalize() }}">
-          <a href="{{ url_for('ver_categoria', categoria_nome=categoria) }}">
+          <a href="{{ url_for('ver_categoria', categoria_nome=categoria) }}" class="categoria-link">
             {{ categoria.capitalize() }}
           </a>
         </div>
