@@ -176,3 +176,32 @@ header h1 {
     margin: 0;
 }
 
+/* AI recommendation styles */
+.ai-section {
+    max-width: 960px;
+    margin: 30px auto;
+    padding: 0 20px 40px;
+}
+.ai-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.ai-card form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.ai-card label { font-size: 0.95rem; }
+.ai-card input[type="number"], .ai-card select { padding: 6px 8px; border-radius: 4px; border: 1px solid #ccc; }
+.features { border: none; padding: 0; display:flex; gap:10px; flex-wrap:wrap; }
+.features label { font-size: 0.9rem; }
+.ai-results { margin-top: 15px; }
+.ai-explanation { background:#f7f9fc; padding:10px; border-radius:6px; margin-bottom:10px; }
+.ai-list { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px; }
+.ai-item { text-align:left; }
+.muted { color:#666; font-size:0.9rem; }
+.error { color: #b00020; }
+

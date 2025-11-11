@@ -33,5 +33,75 @@
         {% endfor %}
       </div>
     </main>
+    <section class="ai-section">
+      <h2>Assistente de Recomendação (IA)</h2>
+      <div class="ai-card">
+        <form id="ai-form">
+          <label>Orçamento diário (R$): <input type="number" name="budget" id="budget" min="0" step="1" placeholder="Ex: 120"></label>
+          <label>Categoria preferida:
+            <select name="category" id="category">
+              <option value="any">Qualquer</option>
+              <option value="compactos">Compactos</option>
+              <option value="suvs">SUVs</option>
+              <option value="esportivos">Esportivos</option>
+            </select>
+          </label>
+          <fieldset class="features">
+            <legend>Recursos desejados</legend>
+            <label><input type="checkbox" name="features" value="Ar condicionado"> Ar condicionado</label>
+            <label><input type="checkbox" name="features" value="Direção elétrica"> Direção elétrica</label>
+            <label><input type="checkbox" name="features" value="Multimídia"> Multimídia</label>
+            <label><input type="checkbox" name="features" value="Bancos de couro"> Bancos de couro</label>
+            <label><input type="checkbox" name="features" value="Vidros elétricos"> Vidros elétricos</label>
+            <label><input type="checkbox" name="features" value="Motor V8"> Motor V8</label>
+          </fieldset>
+          <button id="ai-button" type="submit" class="btn-alugar">Obter recomendação</button>
+        </form>
+
+        <div id="ai-results" class="ai-results" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <script>
+      document.getElementById('ai-form').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const budget = document.getElementById('budget').value || null;
+        const category = document.getElementById('category').value;
+        const features = Array.from(document.querySelectorAll('input[name=features]:checked')).map(x => x.value);
+
+        const resDiv = document.getElementById('ai-results');
+        resDiv.innerHTML = '<p>Buscando recomendações...</p>';
+
+        try {
+          const resp = await fetch('/ai/recommend', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({budget: budget ? Number(budget) : null, category, features})
+          });
+          const data = await resp.json();
+
+          let html = '';
+          if (data.method) {
+            html += `<p class="muted">Método: ${data.method}</p>`;
+          }
+          if (data.explanation) {
+            html += `<div class="ai-explanation"><h4>Justificativa (IA)</h4><p>${data.explanation.replace(/\n/g,'<br>')}</p></div>`;
+          }
+          if (data.recommendations && data.recommendations.length) {
+            html += '<div class="ai-list">';
+            data.recommendations.forEach(r => {
+              html += `<div class="veiculo-card ai-item"><h3>${r.nome}</h3><p>Categoria: ${r.categoria} — R$ ${r.valor}</p><p>Opcionais: ${r.opcionais.join(', ')}</p><a class="btn-alugar" href="/checkout/${r.id}">Ver / Alugar</a></div>`;
+            });
+            html += '</div>';
+          } else {
+            html += '<p>Nenhuma recomendação disponível.</p>';
+          }
+
+          resDiv.innerHTML = html;
+        } catch (err) {
+          resDiv.innerHTML = '<p class="error">Erro ao obter recomendações.</p>' + (err.message ? `<pre>${err.message}</pre>` : '');
+        }
+      });
+    </script>
   </body>
 </html>
